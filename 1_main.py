@@ -41,6 +41,7 @@ print("---")
 # czyli wszystko do linii błedu sie wykona, a nie cofa
 try:
     x = 4
+    print(f'Przed {str(x)}')
     print(x/0)
     x = 5
 except:
@@ -48,6 +49,22 @@ except:
 finally:
     print(x)   
 
+# dla powyższego przykładu obejście z wykorzytsaniem funkcji, aby nie wykonywac częsci kodu przed błedem
+def wykonaj_kod():
+    # Jeśli cała funkcja wykona się bez błędów, zwróci wartość końcową dla x
+    x = 4
+    print(f'Przed {str(x)}')
+    print(x / 0)  # Tu wystąpi błąd
+    x = 5
+    return x  # Zwraca końcową wartość
+
+x = None
+try:
+    x = wykonaj_kod()  # Przypisanie tylko, jeśli funkcja wykona się bez błędów
+except:
+    print("Błąd dzielenia")
+finally:
+    print(f"Wartość x: {x}")
 
 # Taka konstrukacja wyrzuci błąd braku przypisania s, ponieważ nie wykonało
 # się to po wystapienu błędu dzielelnia
